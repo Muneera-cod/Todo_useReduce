@@ -7,21 +7,26 @@ function reducer(state,action){
  case 'addtodo':{
     return[
       ...state,{
-        id:action.newid,
-        todo:action.newtodo,
+        id:action.id,
+        todo:action.todo,
         isComplete:false
       }
     ]
  }
- case 'deletodo':{
-  
+ case 'deletetodo':{
+  return state.filter((items)=> items.id !== action.id)
+ 
+ 
+ }
+ default:{
+  return state
  }
   
  }
 }
 function App() {
  
-  const [state,dispatch]=useReducer(reducer,[{id:1,todo:'Design',isComplete:false},{id:2,todo:'Validation',isComplete:true}])
+  const [state,dispatch]=useReducer(reducer,[])
   return (
     <div className='outerbox'>
     <AddTodo dispatch={dispatch} state={state} />
